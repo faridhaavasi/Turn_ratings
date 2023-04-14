@@ -40,3 +40,13 @@ class UserChangeForm(forms.ModelForm):
         model = User
         fields = ('email', 'password', 'fullname', 'phone_number', 'file_number', 'is_active', 'is_admin')
 
+
+class Login_form(forms.Form):
+    phone_number = forms.CharField(widget=forms.TextInput(
+        attrs={'class': 'input100', 'type': 'text',
+               'placeholder': 'شماره تلفن خود را وارد کنید'})
+    )
+    password = forms.CharField(widget=forms.PasswordInput(
+        attrs={'class': 'input100', 'type': 'password',
+               'placeholder': 'پسورد  خود را وارد کنید'})
+    )
