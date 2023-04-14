@@ -31,13 +31,17 @@
 				
 				</div>
 
-				<form class="login100-form validate-form">
+				<form class="login100-form validate-form", method="post">
+                {% csrf_token %}
 					<span class="login100-form-title">
 					    ورود به سایت
 					</span>
 
 					<div class="wrap-input100 validate-input" data-validate = "Valid email is required: ex@abc.xyz">
-						{{ form.phone_number }}
+						{% for error in form.phone_number.errors %}
+                            <p class="alert-danger">{{ error }}</p>
+                        {% endfor %}
+                        {{ form.phone_number }}
 						<span class="focus-input100"></span>
 						<span class="symbol-input100">
 						
