@@ -1,7 +1,9 @@
 from django import forms
 from django.contrib.auth.forms import ReadOnlyPasswordHashField
 from django.core.exceptions import ValidationError
+from django.core import validators
 from .models import User
+
 class UserCreationForm(forms.ModelForm):
     """A form for creating new users. Includes all the required
     fields, plus a repeated password."""
@@ -39,12 +41,15 @@ class UserChangeForm(forms.ModelForm):
     class Meta:
         model = User
         fields = ('email', 'password', 'fullname', 'phone_number', 'file_number', 'is_active', 'is_admin')
-
+def start_white_09(value):
+    if value[0] != 0 and value[1] != 9:
+        raise ValidationError('یک شماره همراه وارد کنید')
 
 class Login_form(forms.Form):
     phone_number = forms.CharField(widget=forms.TextInput(
         attrs={'class': 'input100', 'type': 'text',
-               'placeholder': 'شماره تلفن خود را وارد کنید'})
+               'placeholder': 'شماره تلفن خود را وارد کنید'}),
+        validators=[validators.MaxLengthValidator(11), start_white_09]
     )
     password = forms.CharField(widget=forms.PasswordInput(
         attrs={'class': 'input100', 'type': 'password',
