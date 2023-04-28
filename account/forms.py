@@ -55,3 +55,15 @@ class Login_form(forms.Form):
         attrs={'class': 'input100', 'type': 'password',
                'placeholder': 'پسورد  خود را وارد کنید'})
     )
+class Register_form(forms.Form):
+    phone_number = forms.CharField(widget=forms.TextInput(
+        attrs={'class': 'input100', 'type': 'text',
+               'placeholder': 'شماره تلفن خود را وارد کنید'}),
+        #validators=[validators.MaxLengthValidator(11), start_white_09]
+    )
+class Check_otp_form(forms.Form):
+    code = forms.CharField(widget=forms.TextInput(
+        attrs={'class': 'input100', 'type': 'text',
+               'placeholder': 'کد را وارد کنید'}),
+        validators=[validators.MaxLengthValidator(4),]
+    )

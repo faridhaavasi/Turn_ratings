@@ -47,7 +47,7 @@ class User(AbstractBaseUser):
     )
     fullname = models.CharField(max_length=50)
     phone_number = models.CharField(max_length=11, unique=True)
-    file_number = models.CharField(max_length=20, unique=True)
+    file_number = models.CharField(max_length=20, unique=True, blank=True, null=True)
     is_active = models.BooleanField(default=True)
     is_admin = models.BooleanField(default=False)
 
@@ -74,3 +74,7 @@ class User(AbstractBaseUser):
         "Is the user a member of staff?"
         # Simplest possible answer: All admins are staff
         return self.is_admin
+class Otp(models.Model):
+    phone = models.CharField(max_length=11)
+    code = models.IntegerField()
+    expiration_date = models.DateTimeField(auto_now_add=True)
