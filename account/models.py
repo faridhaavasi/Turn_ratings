@@ -44,6 +44,9 @@ class User(AbstractBaseUser):
         verbose_name='email address',
         max_length=255,
         unique=True,
+        null=True,
+        blank=True
+
     )
     fullname = models.CharField(max_length=50)
     phone_number = models.CharField(max_length=11, unique=True)
@@ -75,6 +78,7 @@ class User(AbstractBaseUser):
         # Simplest possible answer: All admins are staff
         return self.is_admin
 class Otp(models.Model):
+    token = models.CharField(max_length=50, null=type, blank=True)
     phone = models.CharField(max_length=11)
     code = models.IntegerField()
     expiration_date = models.DateTimeField(auto_now_add=True)
