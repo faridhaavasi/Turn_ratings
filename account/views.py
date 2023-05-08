@@ -49,10 +49,10 @@ class Check_otp(View):
             cd = form.cleaned_data
             if Otp.objects.filter(code=cd['code']).exists():
                 otp = Otp.objects.get(token=request.GET.get('token'))
-
+                token = request.GET.get('token')
                 user = User.objects.create(phone_number=otp.phone)
                 login(request, user)
-                return redirect('/')
+                return redirect(reverse('web:setpassword') + f'?token={token}')
             return form.add_error('code', 'اطلاعات درست نیست')
         return render(request, 'account/check_otp.html', {'form': form})
 
