@@ -10,7 +10,13 @@
         <!-- Header-->
        {% include 'includes/Header.html' %}
         <!-- Section-->
-       {% include 'includes/Section.html' %}
+        {% block main %}
+            <!--
+            <comment>
+            this a space of extends
+            </comment>
+            -->
+        {% endblock %}
         <!-- Footer-->
       {% include 'includes/Footer.html' %}
     </body>

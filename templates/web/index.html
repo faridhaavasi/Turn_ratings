@@ -1,1 +1,35 @@
 {% extends 'home.html' %}
+{% block main %}
+
+
+    <center>
+        {% if request.user.is_authenticated %}
+            <p class="-align-center">
+                شما میتوانید نوبت رزرو کنبید
+            </p>
+            </center>
+        {% else %}
+            <p class="animated">
+                اگر ثبت نام نکردید ابتدا ثبت نام کنید
+            </p>
+            <br>
+            <a href="{% url 'account:register' %}">
+                <button class="btn btn-outline-dark" type="submit">
+                    <i class="bi-cart-fill me-1"></i>
+                    ثبت نام
+
+                </button>
+            </a>
+            <p class="-align-center">
+                ورود را بزنید
+            </p>
+            <a href="{% url 'account:login' %}">
+                <button class="btn btn-outline-dark" type="submit">
+                    <i class="bi-cart-fill me-1"></i>
+                    ورود
+
+                </button>
+            </a>
+        {% endif %}
+
+{% endblock %}
