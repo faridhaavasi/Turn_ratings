@@ -2,85 +2,108 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<title>ثبت نام</title>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-<!--===============================================================================================-->
-	<link rel="icon" type="image/png" href="{% static 'account/images/icons/favicon.ico' %}"/>
-<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="{% static 'account/vendor/bootstrap/css/bootstrap.min.css' %}">
-<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="{% static 'account/fonts/font-awesome-4.7.0/css/font-awesome.min.css' %}">
-<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="{% static 'account/vendor/animate/animate.css' %}">
-<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="{% static 'account/vendor/css-hamburgers/hamburgers.min.css' %}">
-<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="{% static 'account/vendor/select2/select2.min.css' %}">
-<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="{% static 'account/css/util.css' %}">
-	<link rel="stylesheet" type="text/css" href="{% static 'account/css/main.css' %}">
-<!--===============================================================================================-->
+    <title>ثبت نام</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!--===============================================================================================-->
+    <link rel="icon" type="image/png" href="{% static 'account/images/icons/favicon.ico' %}"/>
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="{% static 'account/vendor/bootstrap/css/bootstrap.min.css' %}">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css"
+          href="{% static 'account/fonts/font-awesome-4.7.0/css/font-awesome.min.css' %}">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="{% static 'account/vendor/animate/animate.css' %}">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="{% static 'account/vendor/css-hamburgers/hamburgers.min.css' %}">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="{% static 'account/vendor/select2/select2.min.css' %}">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="{% static 'account/css/util.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'account/css/main.css' %}">
+    <!--===============================================================================================-->
 </head>
 <body>
 
-	<div class="limiter">
-		<div class="container-login100">
-			<div class="wrap-login100">
-				<div class="login100-pic js-tilt" data-tilt>
+<div class="limiter">
+    <div class="container-login100">
+        <div class="wrap-login100">
+            <div class="login100-pic js-tilt" data-tilt>
 
-				</div>
+            </div>
 
-				<form class="login100-form validate-form", method="post">
+            <form class="login100-form validate-form" , method="post">
                 {% csrf_token %}
-					<span class="login100-form-title">
-					بررسی کد
+                <span class="login100-form-title">
+					بررسی کد  ثبت پسورد
 					</span>
+                {% if form.non_field_errors %}
+                    {% for  erroe in form.non_field_errors %}
+                        <p class="alert-danger">{{ error }}</p>
+                    {% endfor %}
+                {% endif %}
 
-					<div class="wrap-input100 validate-input" data-validate = "Valid email is required: ex@abc.xyz">
-						{% for error in form.code.errors %}
-                            <p class="alert-danger">{{ error }}</p>
-                        {% endfor %}
-                        {{ form.code }}
-						<span class="focus-input100"></span>
-						<span class="symbol-input100">
+                <div class="wrap-input100 validate-input" data-validate="Valid email is required: ex@abc.xyz">
+                    {% for error in form.code.errors %}
+                        <p class="alert-danger">{{ error }}</p>
+                    {% endfor %}
+                    {{ form.code }}
+                    <span class="focus-input100"></span>
+                    <span class="symbol-input100">
 
 						</span>
-					</div>
+                </div>
+                <div class="wrap-input100 validate-input" data-validate="Valid email is required: ex@abc.xyz">
+                    {% for error in form.password.errors %}
+                        <p class="alert-danger">{{ error }}</p>
+                    {% endfor %}
+                    {{ form.password }}
+                    <span class="focus-input100"></span>
+                    <span class="symbol-input100">
+
+						</span>
+                </div>
+                <div class="wrap-input100 validate-input" data-validate="Valid email is required: ex@abc.xyz">
+                    {% for error in form.re_password.errors %}
+                        <p class="alert-danger">{{ error }}</p>
+                    {% endfor %}
+                    {{ form.re_password }}
+                    <span class="focus-input100"></span>
+                    <span class="symbol-input100">
+
+						</span>
+                </div>
 
 
-					<div class="container-login100-form-btn">
-						<button class="login100-form-btn">
-							ورود
-						</button>
-					</div>
+                <div class="container-login100-form-btn">
+                    <button class="login100-form-btn">
+                        ورود
+                    </button>
+                </div>
 
 
-
-				</form>
-			</div>
-		</div>
-	</div>
-
-
+            </form>
+        </div>
+    </div>
+</div>
 
 
 <!--===============================================================================================-->
-	<script src="{% static 'account/vendor/jquery/jquery-3.2.1.min.js' %}"></script>
+<script src="{% static 'account/vendor/jquery/jquery-3.2.1.min.js' %}"></script>
 <!--===============================================================================================-->
-	<script src="{% static 'account/vendor/bootstrap/js/popper.js' %}"></script>
-	<script src="{% static 'account/vendor/bootstrap/js/bootstrap.min.js' %}"></script>
+<script src="{% static 'account/vendor/bootstrap/js/popper.js' %}"></script>
+<script src="{% static 'account/vendor/bootstrap/js/bootstrap.min.js' %}"></script>
 <!--===============================================================================================-->
-	<script src="{% static 'account/vendor/select2/select2.min.js' %}"></script>
+<script src="{% static 'account/vendor/select2/select2.min.js' %}"></script>
 <!--===============================================================================================-->
-	<script src="{% static 'account/vendor/tilt/tilt.jquery.min.js' %}"></script>
-	<script >
-		$('.js-tilt').tilt({
-			scale: 1.1
-		})
-	</script>
+<script src="{% static 'account/vendor/tilt/tilt.jquery.min.js' %}"></script>
+<script>
+    $('.js-tilt').tilt({
+        scale: 1.1
+    })
+</script>
 <!--===============================================================================================-->
-	<script src="js/main.js"></script>
+<script src="js/main.js"></script>
 
 </body>
 </html>
