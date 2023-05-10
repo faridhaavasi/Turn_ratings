@@ -1,10 +1,10 @@
 from django.db import models
-from django.contrib.auth.models import (
-    BaseUserManager, AbstractBaseUser
-)
+from django.contrib.auth.models import AbstractBaseUser, BaseUserManager, AbstractUser
+
 
 
 class UserManager(BaseUserManager):
+<<<<<<< HEAD
     def create_user(self, phone_number, password=None):
         """
         Creates and saves a User with the given email, date of
@@ -16,21 +16,33 @@ class UserManager(BaseUserManager):
         user = self.model(
 
             phone_number=phone_number,
+=======
+    def create_user(self, email, phone_number, password=None):
+
+
+        user = self.model(
+            email=email,
+            phone_number=phone_number
+>>>>>>> dbug
         )
 
         user.set_password(password)
         user.save(using=self._db)
         return user
 
+<<<<<<< HEAD
     def create_superuser(self, phone_number, password=None):
         """
         Creates and saves a superuser with the given email, date of
         birth and password.
         """
+=======
+    def create_superuser(self, email, phone_number, password=None):
+
+>>>>>>> dbug
         user = self.create_user(
 
             phone_number=phone_number,
-
             password=password,
 
         )
@@ -38,18 +50,24 @@ class UserManager(BaseUserManager):
         user.save(using=self._db)
         return user
 
-
 class User(AbstractBaseUser):
+<<<<<<< HEAD
 
+=======
+    email = models.CharField(max_length=50, null=True, blank=True)
+>>>>>>> dbug
     fullname = models.CharField(max_length=50, null=True, blank=True)
     phone_number = models.CharField(max_length=11, unique=True)
     file_number = models.CharField(max_length=20, unique=True, blank=True, null=True)
     is_active = models.BooleanField(default=True)
     is_admin = models.BooleanField(default=False)
-
     objects = UserManager()
 
+<<<<<<< HEAD
     USERNAME_FIELD = 'phone_number'
+=======
+    USERNAME_FIELD = "phone_number"
+>>>>>>> dbug
     REQUIRED_FIELDS = []
 
     def __str__(self):
