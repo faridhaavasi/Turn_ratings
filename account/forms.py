@@ -40,11 +40,8 @@ class UserChangeForm(forms.ModelForm):
 
     class Meta:
         model = User
-<<<<<<< HEAD
-        fields = ('password', 'fullname', 'phone_number', 'file_number', 'is_active', 'is_admin')
-=======
         fields = ('fullname', 'phone_number', 'file_number', 'is_active', 'is_admin')
->>>>>>> dbug
+
 def start_white_09(value):
     if value[0] != 0 and value[1] != 9:
         raise ValidationError('یک شماره همراه وارد کنید')
