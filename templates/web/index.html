@@ -2,7 +2,7 @@
 {% block main %}
 
 
-    <center>
+    <>
         {% if request.user.is_authenticated %}
             <p class="-align-center">
                 شما میتوانید نوبت رزرو کنبید
@@ -11,7 +11,16 @@
             <a href="{% url 'account:logout' %}">
                 <button class="btn btn-outline-dark" type="submit">
                     <i class="bi-cart-fill me-1"></i>
-                    logout
+                    حروج از جساب
+
+                </button>
+            </a>
+            <br>
+
+            <a href="{% url 'account:Edit_info' request.user.id %}">
+                <button class="btn btn-outline-dark" type="submit">
+                    <i class="bi-cart-fill me-1"></i>
+                    ویرایش و ثبت اطلاعات
 
                 </button>
             </a>

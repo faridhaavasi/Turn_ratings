@@ -1,7 +1,8 @@
 from django.shortcuts import render, redirect, reverse
 from django.views.generic import View
+from django.views.generic.edit import UpdateView
 from django.contrib.auth import authenticate, login, logout
-from .forms import Login_form, Register_form, Check_otp_form
+from .forms import Login_form, Register_form, Check_otp_form, Editinfo_form
 from random import randint
 from .models import Otp, User
 from django.utils.crypto import get_random_string
@@ -61,7 +62,9 @@ class Check_otp(View):
                 user.save()
                 if user is not None:
                     login(request, user)
-                    return redirect('/')
+                    otp.delete()
+                    return redirect('account:Edit_info', pk=user.id)
+
                 else:
                     return form.add_error('code', 'اطلاعات درست نیست')
 
@@ -71,3 +74,10 @@ class Check_otp(View):
 def user_logout(request):
     logout(request)
     return redirect('/')
+
+class Editinfo(UpdateView):
+    model = User
+    fields = ['fullname', 'email', 'phone_number', 'file_number']
+    #form_class = Editinfo_form
+    
+    success_url = '/'

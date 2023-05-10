@@ -81,3 +81,7 @@ class Check_otp_form(forms.Form):
         re_password = self.cleaned_data['re_password']
         if password != re_password:
             raise ValidationError('پسورد و تکرار آن باید مشابه باشند')
+class Editinfo_form(forms.ModelForm):
+    class Meta:
+        model = User
+        fields = ('fullname', 'email', 'file_number')

@@ -4,9 +4,9 @@ from django.contrib.auth.models import AbstractBaseUser, BaseUserManager, Abstra
 
 class UserManager(BaseUserManager):
 
-    def create_user(self, email, phone_number, password=None):
+    def create_user(self, phone_number, password=None):
         user = self.model(
-            email=email,
+
             phone_number=phone_number
 
         )
@@ -15,7 +15,7 @@ class UserManager(BaseUserManager):
         user.save(using=self._db)
         return user
 
-    def create_superuser(self, email, phone_number, password=None):
+    def create_superuser(self, phone_number, password=None):
         user = self.create_user(
 
             phone_number=phone_number,
@@ -28,11 +28,11 @@ class UserManager(BaseUserManager):
 
 
 class User(AbstractBaseUser):
-    email = models.CharField(max_length=50, null=True, blank=True)
+    email = models.CharField(max_length=50, null=True, blank=True, verbose_name='ایمیل')
 
-    fullname = models.CharField(max_length=50, null=True, blank=True)
-    phone_number = models.CharField(max_length=11, unique=True)
-    file_number = models.CharField(max_length=20, unique=True, blank=True, null=True)
+    fullname = models.CharField(max_length=50, null=True, blank=True, verbose_name='نام بیمار')
+    phone_number = models.CharField(max_length=11, unique=True, verbose_name='شماره تلفن همراه')
+    file_number = models.CharField(max_length=20, unique=True, blank=True, null=True, verbose_name='شماره پرونده')
     is_active = models.BooleanField(default=True)
     is_admin = models.BooleanField(default=False)
     objects = UserManager()
