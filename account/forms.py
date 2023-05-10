@@ -76,3 +76,8 @@ class Check_otp_form(forms.Form):
         attrs={'class': 'input100', 'type': 'password',
                'placeholder': 'تکرار  خود را وارد کنید'})
     )
+    def clean(self):
+        password = self.cleaned_data['password']
+        re_password = self.cleaned_data['re_password']
+        if password != re_password:
+            raise ValidationError('پسورد و تکرار آن باید مشابه باشند')

@@ -16,17 +16,12 @@ class User_login(View):
         form = Login_form(data=request.POST)
         if form.is_valid():
             cd = form.cleaned_data
-<<<<<<< HEAD
             user = authenticate(User, username=cd['phone_number'], password=cd['password'])
-            print(user)
-=======
-            user = authenticate(username=cd['phone_number'], password=cd['password'])
-            print(cd['phone_number'], cd['password'])
->>>>>>> dbug
+
             if user is not None:
                 login(request, user)
                 return redirect('/')
-        print(user)
+
         return render(request, 'account/login.html', {'form': form})
 
 
@@ -60,22 +55,19 @@ class Check_otp(View):
             cd = form.cleaned_data
             if Otp.objects.filter(code=cd['code']).exists():
                 otp = Otp.objects.get(token=request.GET.get('token'))
-<<<<<<< HEAD
-                user = User.objects.create(phone_number=otp.phone, password=cd['password'])
-                login(request, user)
-                return redirect('/')
-            return form.add_error('code', 'اطلاعات درست نیست')
-=======
+
                 user = User(phone_number=otp.phone)
                 user.set_password(cd['password'])
                 user.save()
+                if user is not None:
+                    login(request, user)
+                    return redirect('/')
+                else:
+                    return form.add_error('code', 'اطلاعات درست نیست')
 
-                login(request, user)
-                return redirect('/')
-            else:
-                return form.add_error('code', 'اطلاعات درست نیست')
->>>>>>> dbug
         return render(request, 'account/check_otp.html', {'form': form})
+
+
 def user_logout(request):
     logout(request)
     return redirect('/')
