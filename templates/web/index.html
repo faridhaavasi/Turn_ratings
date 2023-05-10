@@ -7,11 +7,20 @@
             <p class="-align-center">
                 شما میتوانید نوبت رزرو کنبید
             </p>
+
+            <a href="{% url 'account:logout' %}">
+                <button class="btn btn-outline-dark" type="submit">
+                    <i class="bi-cart-fill me-1"></i>
+                    logout
+
+                </button>
+            </a>
             </center>
         {% else %}
             <p class="animated">
                 اگر ثبت نام نکردید ابتدا ثبت نام کنید
             </p>
+
             <br>
             <a href="{% url 'account:register' %}">
                 <button class="btn btn-outline-dark" type="submit">

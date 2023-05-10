@@ -12,7 +12,7 @@ class UserCreationForm(forms.ModelForm):
 
     class Meta:
         model = User
-        fields = ('email', 'fullname', 'phone_number')
+        fields = ('fullname', 'phone_number', 'username')
 
     def clean_password2(self):
         # Check that the two password entries match
@@ -40,7 +40,7 @@ class UserChangeForm(forms.ModelForm):
 
     class Meta:
         model = User
-        fields = ('email', 'password', 'fullname', 'phone_number', 'file_number', 'is_active', 'is_admin')
+        fields = ('fullname', 'phone_number', 'file_number', 'is_active', 'is_admin')
 def start_white_09(value):
     if value[0] != 0 and value[1] != 9:
         raise ValidationError('یک شماره همراه وارد کنید')
@@ -49,7 +49,7 @@ class Login_form(forms.Form):
     phone_number = forms.CharField(widget=forms.TextInput(
         attrs={'class': 'input100', 'type': 'text',
                'placeholder': 'شماره تلفن خود را وارد کنید'}),
-        validators=[validators.MaxLengthValidator(11), start_white_09]
+        validators=[validators.MaxLengthValidator(11)]
     )
     password = forms.CharField(widget=forms.PasswordInput(
         attrs={'class': 'input100', 'type': 'password',
@@ -66,4 +66,12 @@ class Check_otp_form(forms.Form):
         attrs={'class': 'input100', 'type': 'text',
                'placeholder': 'کد را وارد کنید'}),
         validators=[validators.MaxLengthValidator(4),]
+    )
+    password = forms.CharField(widget=forms.PasswordInput(
+        attrs={'class': 'input100', 'type': 'password',
+               'placeholder': 'پسورد  خود را وارد کنید'})
+    )
+    re_password = forms.CharField(widget=forms.PasswordInput(
+        attrs={'class': 'input100', 'type': 'password',
+               'placeholder': 'تکرار  خود را وارد کنید'})
     )
