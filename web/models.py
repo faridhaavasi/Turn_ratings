@@ -1,5 +1,5 @@
 import time
-
+from account.models import User
 from django.db import models
 
 # Create your models here.
@@ -20,6 +20,7 @@ class Time(models.Model):
         return f'{self.yaer}-{self.mont}={self.hour}'
 class Turn(models.Model):
     number = models.IntegerField()
+    user = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True, related_name='turn')
     time = models.ForeignKey(Time, on_delete=models.CASCADE, related_name='turn')
 
     def __str__(self):
