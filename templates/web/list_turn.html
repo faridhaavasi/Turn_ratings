@@ -1,0 +1,54 @@
+{% extends 'home.html' %}
+{% load static %}
+{% block main %}
+    {% for tutn in turn_list %}
+        <section class="py-5">
+            <form method="post">
+                {% csrf_token %}
+                <div class="container px-4 px-lg-5 mt-5">
+                    <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
+                        <div class="col mb-5">
+                            <div class="card h-100">
+
+                                <div class="card-body p-4">
+                                    <div class="text-center">
+                                        <h5 class="fw-bolder">نوبت شماره :{{ tutn.number }}</h5>
+                                        <input type="hidden" name="number" id="number" value="{{ tutn.number }}">
+                                        <input type="hidden" name="year" id="year" value="{{ tutn.time.yaer }}">
+                                        <input type="hidden" name="mont" id="mont" value="{{ tutn.time.mont }}">
+                                        <input type="hidden" name="day" id="day" value="{{ tutn.time.day}}">
+                                        <input type="hidden" name="hour" id="hour" value="{{ tutn.time.hour}}">
+                                        <div>
+                                            سال:
+                                            {{ tutn.time.yaer }}
+                                        </div>
+                                        <div>
+                                            ماه:
+                                            {{ tutn.time.mont }}
+                                        </div>
+                                        <div>
+                                            روز:
+                                            {{ tutn.time.day }}
+                                        </div>
+                                        <div>
+                                            ساعت حضور:
+                                            {{ tutn.time.hour }}
+                                        </div>
+                                        <p>
+
+                                        </p>
+                                    </div>
+                                </div>
+                                <!-- Product actions-->
+                                <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                                    <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="#">رزرو</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </section>
+    {% endfor %}
+{% endblock %}
