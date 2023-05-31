@@ -15,7 +15,7 @@ class Mont(models.Model):
 class Time(models.Model):
     yaer = models.IntegerField()
     mont = models.ForeignKey(Mont, on_delete=models.CASCADE, related_name='time')
-    day = models.IntegerField(max_length=31, null=True, blank=True)
+    day = models.IntegerField(null=True, blank=True)
 
     hour = models.ForeignKey(Hour, on_delete=models.CASCADE, related_name='time')
     def __str__(self):
@@ -27,3 +27,4 @@ class Turn(models.Model):
 
     def __str__(self):
         return f'{self.number}-{self.time}'
+
