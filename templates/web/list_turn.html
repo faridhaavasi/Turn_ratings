@@ -4,55 +4,46 @@
     {% for turn in turn %}
         <section class="py-5">
 
-            <div class="container px-4 px-lg-5 mt-5">
-                <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
-                    <form class="col mb-5">
-                        <div class="card h-100">
-                            <div class="card-body p-4">
-                                <div class="text-center">
+
+            <h5 class="fw-bolder">نوبت شماره :{{ turn.number }}</h5>
 
 
-                                    <h5 class="fw-bolder">نوبت شماره :{{ turn.number }}</h5>
-                                    <form method="post">
-                                        {% csrf_token %}
-                                        <input type="hidden" name="number" id="number" value="{{ turn.number }}">
-                                        <input type="hidden" name="year" id="year" value="{{ turn.time.year }}">
-                                        <input type="hidden" name="mont" id="mont" value="{{ turn.time.mont }}">
-                                        <input type="hidden" name="day" id="day" value="{{ turn.time.day }}">
-                                        <input type="hidden" name="hour" id="hour" value="{{ turn.time.hour }}">
-                                        <div>
-                                        </div>
+            سال:
+            {{ turn.time.yaer }}
+            </div>
+            <div>
+                ماه:
+                {{ turn.time.mont }}
+            </div>
+            <div>
+                روز:
+                {{ turn.time.day }}
+            </div>
+            <div>
+                ساعت حضور:
+                {{ turn.time.hour }}
+            </div>
+            <p>
 
-
-                                            سال:
-                                            {{ turn.time.yaer }}
-                                        </div>
-                                        <div>
-                                            ماه:
-                                            {{ turn.time.mont }}
-                                        </div>
-                                        <div>
-                                            روز:
-                                            {{ turn.time.day }}
-                                        </div>
-                                        <div>
-                                            ساعت حضور:
-                                            {{ turn.time.hour }}
-                                        </div>
-                                        <p>
-
-                                        </p>
-                                </div>
-                            </div>
-                            <!-- Product actions-->
-                        <a href="{% url 'web:save_turn' %}"><button type="button" class="btn btn-dark">Dark</button></a>
-                    </form>
-
-
-                    </div>
+            </p>
+            </div>
+            </div>
+            <!-- Product actions-->
+            <form method="post">
+                {% csrf_token %}
+                <input type="hidden" name="number" id="number" value="{{ turn.number }}">
+                <input type="hidden" name="year" id="year" value="{{ turn.time.year }}">
+                <input type="hidden" name="mont" id="mont" value="{{ turn.time.mont }}">
+                <input type="hidden" name="day" id="day" value="{{ turn.time.day }}">
+                <input type="hidden" name="hour" id="hour" value="{{ turn.time.hour }}">
+                <div>
                 </div>
-            </div>
-            </div>
+                <a href="{% url 'web:TurnList' %}">
+                    <button type="submit" class="btn btn-dark">Dark</button>
+                </a>
+            </form>
+
+
 
         </section>
     {% endfor %}
