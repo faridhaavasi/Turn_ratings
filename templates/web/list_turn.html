@@ -32,6 +32,7 @@
             <form method="post">
                 {% csrf_token %}
                 <input type="hidden" name="number" id="number" value="{{ turn.number }}">
+                <input type="hidden" name="id" id="id" value="{{ turn.pk }}">
                 <input type="hidden" name="year" id="year" value="{{ turn.time.year }}">
                 <input type="hidden" name="mont" id="mont" value="{{ turn.time.mont }}">
                 <input type="hidden" name="day" id="day" value="{{ turn.time.day }}">
