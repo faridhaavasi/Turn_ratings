@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.views.generic import View
-from .models import Turn
+from .models import Turn, Mont
 
 
 # Create your views here.
@@ -13,8 +13,14 @@ class Home(View):
 class TurnList(View):
 
     def get(self, request):
-        turn = Turn.objects.all()
-        return render(request, 'web/list_turn.html', context={'turn': turn})
+
+        mont = request.GET.get('mont', 'فروردین')
+        monts = Mont.objects.all()
+        turn = Turn.objects.filter(time__mont__name__icontains=mont)
+
+
+        return render(request, 'web/list_turn.html', context={'turn': turn, 'monts': monts})
+
 
     def post(self, request):
         id = request.POST['id']

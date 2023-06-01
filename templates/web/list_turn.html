@@ -1,6 +1,17 @@
 {% extends 'home.html' %}
 {% load static %}
 {% block main %}
+    <form>
+        <label >نوبت ها در ماه:</label>
+        <select name="mont" id="mont">
+            {% for mont in monts %}
+                 <option value="{{ mont.name}}">{{ mont }}</option>
+            {% endfor %}
+
+        </select>
+        <br><br>
+        <input type="submit" value="جست و جو">
+    </form>
     {% for turn in turn %}
         <section class="py-5">
 
@@ -43,7 +54,6 @@
                     <button type="submit" class="btn btn-dark">Dark</button>
                 </a>
             </form>
-
 
 
         </section>
