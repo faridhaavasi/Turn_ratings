@@ -6,7 +6,7 @@ from .forms import Login_form, Register_form, Check_otp_form, Editinfo_form
 from random import randint
 from .models import Otp, User
 from django.utils.crypto import get_random_string
-
+import ghasedakpack
 
 class User_login(View):
     def get(self, request):
@@ -37,6 +37,8 @@ class Register_user_lelel_1(View):
             cd = form.cleaned_data
             code = randint(1000, 9999)
             token = get_random_string(length=50)
+            sms = ghasedakpack.Ghasedak("1fca2d5c8598fb09f04ab70c1e6c8eb4b399cccc335b696ef4e0cb3c59b644fb")
+            sms.verification({'receptor': str(cd['phone_number']), 'type': '1', 'template': 'faridturnrading', 'param1': f'{code}'})
             print(code)
             Otp.objects.create(phone=cd['phone_number'], code=code, token=token)
             return redirect(reverse('account:check_otp') + f'?token={token}')

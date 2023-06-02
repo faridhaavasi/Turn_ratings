@@ -1,8 +1,7 @@
 from django.shortcuts import render, redirect
 from django.views.generic import View
 from .models import Turn, Mont
-
-
+import ghasedakpack
 # Create your views here.
 
 class Home(View):
@@ -29,7 +28,10 @@ class TurnList(View):
         mont = request.POST['mont']
         day = request.POST['day']
         hour = request.POST['hour']
-        turn = Turn.objects.all()
+        sms = ghasedakpack.Ghasedak("1fca2d5c8598fb09f04ab70c1e6c8eb4b399cccc335b696ef4e0cb3c59b644fb")
+        masage = f'شماره{number}با مشخصات:{year}-{mont}در{day}و ساعت {hour} برای شما با شکاره پرونده{request.user.file_number} ثبت شد'
+        sms.send({'message': masage, 'receptor': '09xxxxxxxxx', 'linenumber': '3000xxxxx'})
+
 
         Turn.objects.get(id=id).delete()
         return redirect('web:home')
