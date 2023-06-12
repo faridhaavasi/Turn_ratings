@@ -1,8 +1,15 @@
 {% extends 'home.html' %}
 {% load static %}
 {% block main %}
+    <center>
+    <div class="jumbotron jumbotron-fluid">
+  <div class="container">
+    <h1 class="display-4">بخش لیست نوبت ها</h1>
+    <p class="lead">ابتدا ماه مورد نظر را انتخاب کنید سپس بر روی جست و جو کلیک کنید</p>
+  </div>
+</div>
     <form>
-        <label >نوبت ها در ماه:</label>
+
         <select name="mont" id="mont">
             {% for mont in monts %}
                  <option value="{{ mont.name}}">{{ mont }}</option>
@@ -57,5 +64,6 @@
 
 
         </section>
+        </center>
     {% endfor %}
 {% endblock %}

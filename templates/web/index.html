@@ -2,27 +2,23 @@
 {% block main %}
 
 
-    <>
+    <center>
         {% if request.user.is_authenticated %}
             <p class="-align-center">
-                شما میتوانید نوبت رزرو کنبید
+                <button type="button" class="btn btn-success"> شما میتوانید نوبت رزرو کنبید
+                روی قسمت رزرو نوبت در بالای کادر کلیک کنید</button>
             </p>
 
             <a href="{% url 'account:logout' %}">
-                <button class="btn btn-outline-dark" type="submit">
-                    <i class="bi-cart-fill me-1"></i>
-                    حروج از جساب
-
-                </button>
+                <button type="button" class="btn btn-danger">خروج از حساب</button>
             </a>
+            <br>
             <br>
 
             <a href="{% url 'account:Edit_info' request.user.id %}">
-                <button class="btn btn-outline-dark" type="submit">
-                    <i class="bi-cart-fill me-1"></i>
-                    ویرایش و ثبت اطلاعات
+                <button type="button" class="btn btn-primary">ویرایش اطلاعات</button>
 
-                </button>
+
             </a>
             </center>
         {% else %}
@@ -32,21 +28,16 @@
 
             <br>
             <a href="{% url 'account:register' %}">
-                <button class="btn btn-outline-dark" type="submit">
-                    <i class="bi-cart-fill me-1"></i>
-                    ثبت نام
+              <button type="button" class="btn btn-info">ثبت نام</button>
 
-                </button>
+
+
             </a>
             <p class="-align-center">
-                ورود را بزنید
+                در غیر اینصورت ورود را بزنید
             </p>
             <a href="{% url 'account:login' %}">
-                <button class="btn btn-outline-dark" type="submit">
-                    <i class="bi-cart-fill me-1"></i>
-                    ورود
-
-                </button>
+           <button type="button" class="btn btn-info">ورود</button>
             </a>
         {% endif %}
 
