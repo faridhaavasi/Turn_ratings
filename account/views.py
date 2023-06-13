@@ -29,16 +29,19 @@ class User_login(View):
 class Register_user_lelel_1(View):
     def get(self, request):
         form = Register_form()
+
+
         return render(request, 'account/Register_l_1.html', {'form': form})
 
     def post(self, request):
         form = Register_form(data=request.POST)
+
         if form.is_valid():
             cd = form.cleaned_data
             code = randint(1000, 9999)
             token = get_random_string(length=50)
-            sms = ghasedakpack.Ghasedak("1fca2d5c8598fb09f04ab70c1e6c8eb4b399cccc335b696ef4e0cb3c59b644fb")
-            sms.verification({'receptor': str(cd['phone_number']), 'type': '1', 'template': 'faridturnrading', 'param1': f'{code}'})
+            #sms = ghasedakpack.Ghasedak("1fca2d5c8598fb09f04ab70c1e6c8eb4b399cccc335b696ef4e0cb3c59b644fb")
+            #sms.verification({'receptor': str(cd['phone_number']), 'type': '1', 'template': 'faridturnrading', 'param1': f'{code}'})
             print(code)
             Otp.objects.create(phone=cd['phone_number'], code=code, token=token)
             return redirect(reverse('account:check_otp') + f'?token={token}')

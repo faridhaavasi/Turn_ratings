@@ -62,6 +62,15 @@ class Register_form(forms.Form):
                'placeholder': 'شماره تلفن خود را وارد کنید'}),
         #validators=[validators.MaxLengthValidator(12), start_white_09]
     )
+
+
+    def clean_phone_number(self):
+        Phone_number = self.cleaned_data['phone_number']
+        obj = User.objects.get(phone_number=Phone_number)
+        phone_number = obj.phone_number
+        if Phone_number == phone_number:
+            raise ValidationError('این شماره قبلا وجود دارد')
+    
 class Check_otp_form(forms.Form):
     code = forms.CharField(widget=forms.TextInput(
         attrs={'class': 'input100', 'type': 'text',
@@ -76,6 +85,7 @@ class Check_otp_form(forms.Form):
         attrs={'class': 'input100', 'type': 'password',
                'placeholder': 'تکرار  خود را وارد کنید'})
     )
+
     def clean(self):
         password = self.cleaned_data['password']
         re_password = self.cleaned_data['re_password']
