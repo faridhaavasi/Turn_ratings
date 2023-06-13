@@ -57,6 +57,7 @@ class Check_otp(View):
 
     def post(self, request):
         form = Check_otp_form(data=request.POST)
+
         if form.is_valid():
             cd = form.cleaned_data
             if Otp.objects.filter(code=cd['code']).exists():
