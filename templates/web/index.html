@@ -4,10 +4,18 @@
 
     <center>
         {% if request.user.is_authenticated %}
-            <p class="-align-center">
-                <button type="button" class="btn btn-success"> شما میتوانید نوبت رزرو کنبید
-                روی قسمت رزرو نوبت در بالای کادر کلیک کنید</button>
-            </p>
+            <div class="jumbotron jumbotron-fluid">
+                <div class="container">
+                    <h1 class="display-4"></h1>
+                   <div class="alert alert-success" role="alert">
+                    <p class="lead">  شما میتوانید نوبت رزرو کنبید
+                    روی قسمت رزرو نوبت در بالای کادر کلیک کنید
+                </p></p>
+                </div>
+            </div>
+
+
+
 
             <a href="{% url 'account:logout' %}">
                 <button type="button" class="btn btn-danger">خروج از حساب</button>
@@ -28,8 +36,7 @@
 
             <br>
             <a href="{% url 'account:register' %}">
-              <button type="button" class="btn btn-info">ثبت نام</button>
-
+                <button type="button" class="btn btn-info">ثبت نام</button>
 
 
             </a>
@@ -37,7 +44,7 @@
                 در غیر اینصورت ورود را بزنید
             </p>
             <a href="{% url 'account:login' %}">
-           <button type="button" class="btn btn-info">ورود</button>
+                <button type="button" class="btn btn-info">ورود</button>
             </a>
         {% endif %}
 
